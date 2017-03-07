@@ -1,12 +1,36 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" ng-app="phonebook">
 <head>
   <meta charset="UTF-8">
   <title>Superhero Phone Book</title>
   <link rel="stylesheet" href="style.css">
-</head>
-<body>
-
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular.min.js"></script>
   <script src="app.js"></script>
+</head>
+<body ng-controller="phoneCtrl as vm">
+  <div ng-repeat="phonebook in vm.phonebook | filter:search | limitTo : limit" ng-class = 'phonebook.group' =>
+    <img ng-src='{{phonebook.img}}' ng-show="vm.viewImg[$index]"/>
+    <p>Superhero: {{phonebook.name}}</p>
+    <button ng-click="vm.viewImg[$index] = !vm.viewImg[$index]">View Photo</button>
+    <p>Secret Number: {{phonebook.number}}</p>
+    <p>Membership: {{phonebook.group}}</p>
+    <p> {{phonebook.img}} </p>
+    <hr>
+  </div>
+
+  <div>
+  <input type="text" ng-model="search.name" placeholder="Search by Hero Name">
+  <input type="integer" ng-model="limit" placeholder="Limit # of Superheros">
+  </div>
+
+  <!-- <div>
+    <input type="text" ng-model="vm.newHero.">
+    <input type="text" ng-model="vm.newHero.grumblAuthor">
+    <input type="text" ng-model="vm.newHero.grumblContent">
+    <input type="text" ng-model="vm.newHero.grumblUrl">
+    <button ng-click="vm.addGrumbl()">Add Hero</button>
+    <p>{{vm.newHero}}</p>
+  </div> -->
+
 </body>
 </html>
